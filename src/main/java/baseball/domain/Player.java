@@ -8,13 +8,7 @@ public class Player {
     private final List<Integer> balls;
 
     public Player(String input) {
-        if (input.length() != 3) {
-            throw new IllegalArgumentException(GameMessage.INVALID_INPUT_LENGTH);
-        }
-
-        if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(GameMessage.INVALID_INPUT_NON_DIGIT);
-        }
+        validateInputFormat(input);
 
         balls = new ArrayList<>();
         for (char c : input.toCharArray()) {
@@ -28,6 +22,16 @@ public class Player {
 
     public List<Integer> getBalls() {
         return balls;
+    }
+
+    private void validateInputFormat(String input) {
+        if (input.length() != 3) {
+            throw new IllegalArgumentException(GameMessage.INVALID_INPUT_LENGTH);
+        }
+
+        if (!input.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(GameMessage.INVALID_INPUT_NON_DIGIT);
+        }
     }
 }
 
